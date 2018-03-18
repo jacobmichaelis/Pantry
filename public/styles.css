@@ -1,0 +1,73 @@
+body {
+    font-family: 'Arvo';
+    font-size: 16px;
+    background: #E5E5FF;
+}
+footer {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	padding: 5px;
+}
+
+/* List */
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: flex;
+    align-items: center;
+}
+
+.delete {
+    display: none;
+    padding: 1px 6px !important;
+    margin-left: auto !important;
+}
+
+li:hover .delete {
+    display: block;
+}
+
+label {
+    width: 400px;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+/* Form */
+
+input[type=checkbox] {
+    transform: scale(1.5);
+    margin-right: 10px;
+}
+
+input[type=text] {
+    font-size: 1em;
+}
+
+button {
+    font-family: 'Arvo';
+    font-size: 1em;
+}
+
+ul {
+    margin-top: 40px;
+}
+
+ul li {
+    margin-bottom: 5px;
+}
+
+.pantry {
+    padding: 0 100px;
+}
+
+.pantry li {
+    background: white;
+    padding: 10px;
+}

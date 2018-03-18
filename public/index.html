@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
+    <link rel="stylesheet" href="/styles.css"/>
+    <title>Your Pantry</title>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container text-center">
+        <h1>Items in Your Pantry</h1>
+        <p v-show="activeItems === 0">You don't have any items in your pantry, go shopping.</p>
+      </div>
+      <form class="container" v-on:submit.prevent="addItem">
+        <div class="col-sm-5">
+          <input class="form-control" type="text" placeholder="Item name" v-model="text">
+        </div>
+        <div class="col-sm-5">
+          <input class="form-control" type="date" v-model="expDate">
+        </div>
+        <div class="col-sm-2">
+          <button class="btn btn-default" type="submit">Add</button>
+        </div>
+      </form>
+      <div class="container">
+        <ul class="col-sm-3 d-inline-block">
+          <li><button class="btn btn-default btn-block" v-on:click="orderName()">Order by Name</button></li>
+          <li><button class="btn btn-default btn-block" v-on:click="orderExp()">Order by Expiration Date</button></li>
+          <li><button class="btn btn-default btn-block" v-on:click="showAll()">Show All</button></li>
+          <li><button class="btn btn-default btn-block" v-on:click="showExpired()">Show Expired</button></li>
+          <li><button class="btn btn-default btn-block" v-on:click="deleteExpired()">Delete Expired</button></li>
+        </ul>
+        <ul class="pantry col-sm-9">
+          <li v-for="item in filteredItems" draggable="true" v-on:dragstart="dragItem(item)" v-on:dragover.prevent v-on:drop="dropItem(item)">
+            <label v-bind:class="{ expired: item.expired }">
+              {{ item.text }}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+              <span v-if="item.expired" style="color: red;">Expired</span>
+              <span v-else style="color: green;">Good Until</span>
+              &nbsp;&nbsp;&nbsp;&nbsp;{{ item.expDate }}
+            </label>
+            <button v-on:click="deleteItem(item)" class="delete btn btn-default">&#10006;</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <footer><a href="https://github.com/jacobmichaelis/Pantry">Github Link</a></footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js" integrity="sha256-pU9euBaEcVl8Gtg+FRYCtin2vKLN8sx5/4npZDmY2VA=" crossorigin="anonymous"></script>
+    <script src="/scripts.js"></script>
+  </body>
+</html>
